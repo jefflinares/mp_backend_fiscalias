@@ -3,7 +3,7 @@ const app = express()
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var router = express.Router();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const back = 'Backend MP - FISCALIAS';
 
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -34,7 +34,7 @@ router.route('/fiscalias').get((request, response) => {
 
 router.route('/fiscalias/:id').get((request, response) => {
     dboperations.getFiscalia(request.params.id).then(result => {
-        response.status(202).json(result);
+        response.status(202).json(result[0]);
     });
 });
 
@@ -49,7 +49,7 @@ router.route('/fiscalias').post((request, response) => {
 
     let fiscalia = {...request.body};
     dboperations.addFiscalia(fiscalia).then(result => {
-        response.status(201).json(result);
+        response.status(201).json(result[0]);
     });
 });
 
@@ -59,7 +59,7 @@ router.route('/fiscalias').put((request, response) => {
 
     let fiscalia = {...request.body};
     dboperations.updateFiscalia(fiscalia).then(result => {
-        response.status(202).json(result);
+        response.status(202).json(result[0]);
     });
 });
 

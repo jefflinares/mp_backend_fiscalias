@@ -43,7 +43,7 @@ async function getFiscalia(id) {
         }
         let fiscalias = await pool.request()
         .input('input_parameter', sql.Int, id).query("SELECT * FROM FISCALIA WHERE id = @input_parameter" );
-        return fiscalias.recordsets;
+        return fiscalias.recordset;
     }
     catch(err){
         console.log(err);
@@ -65,7 +65,7 @@ async function addFiscalia(fiscalia){
             .input('Ubicacion', sql.VarChar(500), fiscalia.Ubicacion)
             .execute('addFiscalia');
 
-        return insertFiscalia.recordsets;
+        return insertFiscalia.recordset;
 
     }catch (err){
         console.log(err);
@@ -88,7 +88,7 @@ async function updateFiscalia(fiscalia){
             .input('Ubicacion', sql.VarChar(500), fiscalia.Ubicacion)
             .execute('updateFiscalia');
 
-        return updateFiscalia.recordsets;
+        return updateFiscalia.recordset;
 
     }catch (err){
         console.log(err);
@@ -103,7 +103,7 @@ async function deleteFiscalia(id) {
         let fiscalias = await pool.request()
             .input('Id', sql.Int, id)
             .execute("deleteFiscalia");
-        return fiscalias.recordsets;
+        return fiscalias.recordset;
     }
     catch(err){
         console.log(err);
